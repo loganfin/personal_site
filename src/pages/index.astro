@@ -1,0 +1,76 @@
+---
+import Layout from '../components/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const recentPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout>
+  <section
+    class="py-8 border-2 border-gruv-border bg-gruv-bg-hard p-6 sm:p-8 rounded-lg shadow-md mb-10"
+  >
+    <h1 class="text-2xl sm:text-4xl font-extrabold text-gruv-yellow mb-4">
+      Welcome to my digital terminal.
+    </h1>
+
+    <p class="text-gruv-fg leading-relaxed mb-6 max-w-2xl text-sm sm:text-base">
+      I write about software engineering, computer science, mathematics, and building retro-inspired
+      web applications.
+    </p>
+
+    <div class="flex flex-wrap gap-4">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded border-2 border-gruv-accent bg-gruv-accent text-gruv-bg-hard font-bold text-sm hover:bg-gruv-yellow hover:border-gruv-yellow transition-all shadow"
+      >
+        <span>Explore Blog Posts</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="space-y-4">
+    <div class="flex items-center justify-between border-b-2 border-gruv-border pb-2">
+      <h2 class="text-xl font-bold text-gruv-green flex items-center gap-2">
+        <span>#</span>
+        <span>Recent Articles</span>
+      </h2>
+      <a href="/blog" class="text-xs text-gruv-accent hover:underline font-bold">
+        View All ({posts.length}) &rarr;
+      </a>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        recentPosts.map((post) => (
+          <a
+            href={`/blog/${post.id}`}
+            class="border border-gruv-border bg-gruv-card p-5 rounded-lg hover:border-gruv-yellow hover:bg-gruv-card-hover transition-all flex flex-col justify-between group focus:outline-none"
+          >
+            <div>
+              <div class="text-xs text-gruv-fg-muted mb-2 font-mono">
+                {formatDate(post.data.date)}
+              </div>
+              <h3 class="text-base font-bold text-gruv-fg-bright group-hover:text-gruv-yellow transition-colors mb-2">
+                {post.data.title}
+              </h3>
+            </div>
+            <div class="mt-4 pt-2 border-t border-gruv-border-subtle flex items-center justify-between text-xs text-gruv-accent">
+              <span>Read post</span>
+              <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

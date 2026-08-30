@@ -1,0 +1,44 @@
+---
+
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  aria-label="Toggle theme"
+  title="Toggle theme"
+  class="p-2 rounded border border-gruv-border bg-gruv-card text-gruv-orange hover:border-gruv-yellow transition-all duration-500 cursor-pointer shadow-sm"
+>
+  <svg
+    class="theme-toggle-icon w-5 h-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path
+      d="M12 1.5v2m0 17v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1.5 12H4m16 0h2.5M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+    ></path>
+    <circle class="sun-disc" cx="12" cy="12" r="5"></circle>
+  </svg>
+</button>
+
+<script>
+  function initThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (!toggleBtn || toggleBtn.dataset.bound) return;
+    toggleBtn.dataset.bound = 'true';
+
+    toggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      document.documentElement.setAttribute('data-theme', newTheme);
+    });
+  }
+
+  initThemeToggle();
+  document.addEventListener('astro:after-swap', initThemeToggle);
+</script>

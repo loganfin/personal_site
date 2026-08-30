@@ -1,0 +1,195 @@
+@import 'tailwindcss';
+
+:root,
+[data-theme='dark'] {
+  --color-surface-bg: #282828;
+  --color-surface-bg-hard: #1d2021;
+  --color-surface-card: #3c3836;
+  --color-surface-card-hover: #504945;
+  --color-text-main: #ebdbb2;
+  --color-text-bright: #fbf1c7;
+  --color-text-muted: #a89984;
+  --color-border-main: #504945;
+  --color-border-subtle: #3c3836;
+
+  --color-brand-accent: #fe8019;
+  --color-brand-yellow: #fabd2f;
+  --color-brand-green: #b8bb26;
+  --color-brand-aqua: #8ec07c;
+  --color-brand-blue: #83a598;
+  --color-brand-purple: #d3869b;
+  --color-brand-red: #fb4934;
+}
+
+[data-theme='light'] {
+  --color-surface-bg: #fbf1c7;
+  --color-surface-bg-hard: #f9f5d7;
+  --color-surface-card: #ebdbb2;
+  --color-surface-card-hover: #d5c4a1;
+  --color-text-main: #3c3836;
+  --color-text-bright: #282828;
+  --color-text-muted: #7c6f64;
+  --color-border-main: #d5c4a1;
+  --color-border-subtle: #e0d3b6;
+
+  --color-brand-accent: #af3a03;
+  --color-brand-yellow: #b57614;
+  --color-brand-green: #79740e;
+  --color-brand-aqua: #427b58;
+  --color-brand-blue: #076678;
+  --color-brand-purple: #8f3f71;
+  --color-brand-red: #9d0006;
+}
+
+@theme {
+  --font-mono:
+    'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-gruv-bg: var(--color-surface-bg);
+  --color-gruv-bg-hard: var(--color-surface-bg-hard);
+  --color-gruv-card: var(--color-surface-card);
+  --color-gruv-card-hover: var(--color-surface-card-hover);
+  --color-gruv-fg: var(--color-text-main);
+  --color-gruv-fg-bright: var(--color-text-bright);
+  --color-gruv-fg-muted: var(--color-text-muted);
+  --color-gruv-border: var(--color-border-main);
+  --color-gruv-border-subtle: var(--color-border-subtle);
+
+  --color-gruv-accent: var(--color-brand-accent);
+  --color-gruv-orange: var(--color-brand-accent);
+  --color-gruv-yellow: var(--color-brand-yellow);
+  --color-gruv-green: var(--color-brand-green);
+  --color-gruv-aqua: var(--color-brand-aqua);
+  --color-gruv-blue: var(--color-brand-blue);
+  --color-gruv-purple: var(--color-brand-purple);
+  --color-gruv-red: var(--color-brand-red);
+}
+
+/* Smooth theme transitions */
+body,
+header,
+footer {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease;
+}
+
+/* Theme toggle sun icon (empty in dark, filled in light) */
+.theme-toggle-icon {
+  color: var(--color-gruv-orange);
+  transition:
+    color 0.5s ease,
+    transform 0.6s ease;
+}
+
+.sun-disc {
+  fill: currentColor;
+  fill-opacity: 0;
+  transition: fill-opacity 0.5s ease;
+}
+
+[data-theme='dark'] .theme-toggle-icon {
+  transform: rotate(90deg);
+}
+
+[data-theme='dark'] .sun-disc {
+  fill-opacity: 0;
+}
+
+[data-theme='light'] .theme-toggle-icon {
+  color: var(--color-gruv-yellow);
+  transform: rotate(0deg);
+}
+
+[data-theme='light'] .sun-disc {
+  fill-opacity: 1;
+}
+
+/* Custom markdown content styling */
+.prose-gruv {
+  color: var(--color-text-main);
+}
+
+.prose-gruv h1,
+.prose-gruv h2,
+.prose-gruv h3,
+.prose-gruv h4 {
+  color: var(--color-text-bright);
+  font-weight: 700;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px dashed var(--color-border-main);
+  padding-bottom: 0.3em;
+}
+
+.prose-gruv h1 {
+  font-size: 1.75rem;
+  color: var(--color-brand-yellow);
+}
+.prose-gruv h2 {
+  font-size: 1.4rem;
+  color: var(--color-brand-green);
+}
+.prose-gruv h3 {
+  font-size: 1.2rem;
+  color: var(--color-brand-blue);
+}
+
+.prose-gruv p {
+  margin-bottom: 1.25em;
+  line-height: 1.7;
+}
+
+.prose-gruv a {
+  color: var(--color-brand-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.prose-gruv a:hover {
+  color: var(--color-brand-yellow);
+}
+
+.prose-gruv pre {
+  background-color: var(--color-surface-bg-hard);
+  border: 1px solid var(--color-border-main);
+  border-radius: 0.375rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.prose-gruv code {
+  background-color: var(--color-surface-card);
+  color: var(--color-brand-aqua);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+.prose-gruv pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.prose-gruv ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
+}
+
+.prose-gruv ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
+}
+
+.prose-gruv blockquote {
+  border-left: 4px solid var(--color-brand-yellow);
+  padding-left: 1rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: 1.25em 0;
+}

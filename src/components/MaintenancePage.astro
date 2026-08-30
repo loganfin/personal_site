@@ -1,0 +1,24 @@
+---
+interface Props {
+  title?: string;
+  message?: string;
+}
+
+const {
+  title = 'SYSTEM MAINTENANCE',
+  message = 'Scheduled maintenance in progress. The site will be back up shortly. Please check back soon.',
+} = Astro.props;
+---
+
+<div class="flex-1 w-full flex items-center justify-center px-4 py-16">
+  <div
+    class="border-2 border-gruv-border bg-gruv-bg-hard rounded-lg shadow-md max-w-md w-full p-8 text-center"
+  >
+    <div class="text-gruv-orange text-5xl font-extrabold mb-4">[ ! ]</div>
+    <h1 class="text-2xl font-bold text-gruv-yellow mb-3">{title}</h1>
+    <p class="text-gruv-fg-muted text-sm mb-6 leading-relaxed">{message}</p>
+    <div class="text-xs font-mono text-gruv-green border-t border-gruv-border pt-4">
+      status: offline -- try again soon
+    </div>
+  </div>
+</div>

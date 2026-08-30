@@ -1,0 +1,22 @@
+---
+import Layout from '../components/Layout.astro';
+---
+
+<Layout title="404 — Page Not Found" path="~/404">
+  <div
+    class="py-16 text-center border-2 border-gruv-border bg-gruv-bg-hard rounded-lg p-8 my-8 shadow-md"
+  >
+    <div class="text-gruv-red text-6xl font-extrabold mb-4 font-mono">[ 404 ]</div>
+    <h1 class="text-2xl font-bold text-gruv-yellow mb-2">ERROR: ADDRESS_NOT_FOUND</h1>
+    <p class="text-gruv-fg-muted mb-8 max-w-md mx-auto text-sm">
+      The requested route does not exist in this sector.
+    </p>
+    <a
+      href="/"
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded border-2 border-gruv-accent bg-gruv-accent text-gruv-bg-hard font-bold text-sm hover:bg-gruv-yellow hover:border-gruv-yellow transition-all"
+    >
+      <span>&larr;</span>
+      <span>RETURN TO HOMEPAGE</span>
+    </a>
+  </div>
+</Layout>
